@@ -3,7 +3,7 @@ var memory
 var raw_program
 var program
 var program_i
-var result = document.getElementById("result")
+var output = document.getElementById("output")
 var sleep_time = 30
 
 function run() {
@@ -28,7 +28,7 @@ function run() {
       pointer--
       break
     case ".":
-      result.innerText += String.fromCharCode(memory[pointer])
+      output.innerText += String.fromCharCode(memory[pointer])
       break
     case "[":
       if (memory[pointer] == 0) {
@@ -97,7 +97,7 @@ document.getElementById("run").addEventListener("click", ()=>{
   raw_program = document.getElementById("input_program").value
   program = raw_program.replace(/[^\+\-\>\<\.\,\[\]]/g, "")
   program_i = 0
-  result.innerText = null
+  output.innerText = null
   show()
   setTimeout(run, sleep_time)
 })
