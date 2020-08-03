@@ -3,6 +3,7 @@ var memory
 var raw_program
 var program
 var program_i
+var run_btn = document.getElementById("run")
 var output = document.getElementById("output")
 var sleep_time = 30
 
@@ -64,6 +65,7 @@ function run() {
   program_i++
   show()
   if (program_i < program.length) setTimeout(run, sleep_time)
+  else run_btn.disabled = false
 }
 
 function show() {
@@ -91,7 +93,8 @@ function show() {
   document.getElementById("memory").innerHTML = memory_elm
 }
 
-document.getElementById("run").addEventListener("click", ()=>{
+run_btn.addEventListener("click", ()=>{
+  run_btn.disabled = true
   pointer = 0
   memory = [0]
   raw_program = document.getElementById("input_program").value
