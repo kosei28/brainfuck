@@ -67,28 +67,28 @@ function run() {
 }
 
 function show() {
-  var program_elm = document.getElementById("program")
-  program_elm.innerHTML = null
+  var program_elm = ""
   var count_commands = 0
   for (var i=0; i<raw_program.length; i++) {
     var is_command = /[\+\-\>\<\.\,\[\]]/.test(raw_program[i])
     if (count_commands == program_i && is_command) {
-      program_elm.innerHTML += `<span class="running">${raw_program[i]}</span>`
+      program_elm += `<span class="running">${raw_program[i]}</span>`
     } else {
-      program_elm.innerHTML += `<span>${raw_program[i]}</span>`
+      program_elm += `<span>${raw_program[i]}</span>`
     }
     if (is_command) count_commands++
   }
+  document.getElementById("program").innerHTML = program_elm
 
-  var memory_elm = document.getElementById("memory")
-  memory_elm.innerHTML = null
+  var memory_elm = ""
   memory.forEach((value, i)=>{
     if (i == pointer) {
-      memory_elm.innerHTML += `<div class="value pointer">${("000" + value).slice(-3)}</div>`
+      memory_elm += `<div class="value pointer">${("000" + value).slice(-3)}</div>`
     } else {
-      memory_elm.innerHTML += `<div class="value">${("000" + value).slice(-3)}</div>`
+      memory_elm += `<div class="value">${("000" + value).slice(-3)}</div>`
     }
   })
+  document.getElementById("memory").innerHTML = memory_elm
 }
 
 document.getElementById("run").addEventListener("click", ()=>{
